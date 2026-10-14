@@ -1,23 +1,70 @@
 <!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<title>Classroom de JL</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Tareas, notas y pendientes de JL">
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tablero de tareas</title>
+<meta name="robots" content="noindex,nofollow">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Classroom de JL">
-<meta property="og:description" content="Tareas, notas y pendientes de JL">
+<meta property="og:title" content="Tablero de tareas">
+<meta property="og:description" content="Tareas y pendientes">
 <meta property="og:image" content="https://jlmz2010.github.io/classroom-jl/preview.png">
-<meta property="og:url" content="https://jlmz2010.github.io/classroom-jl/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="robots" content="noindex, nofollow">
-<meta http-equiv="refresh" content="0; url=https://claude.ai/artifact/QnpAFgm6RKjJTvh7215C4x">
-<link rel="canonical" href="https://claude.ai/artifact/QnpAFgm6RKjJTvh7215C4x">
-</head>
-<body>
-<p>Abriendo el tablero… <a href="https://claude.ai/artifact/QnpAFgm6RKjJTvh7215C4x">Si no abre, toca aquí</a>.</p>
-<script>location.replace("https://claude.ai/artifact/QnpAFgm6RKjJTvh7215C4x");</script>
-</body>
-</html>
+<style>
+:root{--bg:#f6f7f9;--fg:#1c2430;--mut:#6a7585;--card:#fff;--line:#e2e6ec;--ok:#2e7d32;--bad:#c62828;--warn:#e08a00;--blue:#183b68}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1319;--fg:#e8ecf2;--mut:#98a3b3;--card:#171d26;--line:#2a3340;--ok:#66bb6a;--bad:#ef5350;--warn:#ffb74d;--blue:#7fb0ee}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 system-ui,sans-serif}
+.w{max-width:1000px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:0 0 2px}.sub{color:var(--mut);font-size:13px;margin-bottom:14px}
+.k{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.k .c b{display:block;font-size:26px;line-height:1.1}.k .c span{font-size:12px;color:var(--mut)}
+h2{font-size:16px;margin:0 0 8px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--mut);font-weight:600}
+.tw{overflow-x:auto}
+.bar{height:8px;background:var(--line);border-radius:4px;min-width:60px}.bar i{display:block;height:100%;border-radius:4px;background:var(--blue)}
+.t{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;border:1px solid var(--line);white-space:nowrap}
+.Faltante{color:var(--bad);border-color:var(--bad)}.Pendiente{color:var(--warn);border-color:var(--warn)}.Calificada{color:var(--ok);border-color:var(--ok)}.Entregada{color:var(--blue);border-color:var(--blue)}
+.g{margin-bottom:14px}.n{color:var(--mut);font-size:12px;margin-top:6px}
+input{width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--fg);margin-bottom:8px;font-size:14px}
+</style></head><body><div class="w">
+<h1>Tablero de tareas</h1>
+<div class="sub">Última revisión: 13 oct 2026, 5:38 pm · Datos tal cual aparecen en Classroom</div>
+<div class="k" id="k"></div>
+<div class="c g"><h2>Urgente</h2><div class="tw"><table id="urg"></table></div></div>
+<div class="c g"><h2>Por materia</h2><div class="tw"><table id="mat"></table></div></div>
+<div class="c g"><h2>Faltantes</h2><div class="tw"><table id="fal"></table></div></div>
+<div class="c g"><h2>Todas las tareas</h2><input id="q" placeholder="Buscar materia o tarea"><div class="tw"><table id="all"></table></div>
+<div class="n">Promedio = solo tareas con estado Calificada. Español, Tecnología, Técnicas de Estudio y Socioemocional no muestran notas en Classroom. Artes y Français no tienen tareas publicadas.</div></div>
+</div>
+<script>
+const D=[{"materia": "Matemáticas", "tarea": "Unidad 2 · Ejercicios de razones y proporciones", "limite": "", "estado": "Pendiente", "tardia": "No", "nota": null, "max": 100}, {"materia": "Matemáticas", "tarea": "Jerarquía de operaciones · Trabajo 2", "limite": "", "estado": "Calificada", "tardia": "No", "nota": 100, "max": 100}, {"materia": "Matemáticas", "tarea": "Jerarquía de operaciones · Ejercicios Unidad I Tema 4", "limite": "", "estado": "Calificada", "tardia": "No", "nota": 100, "max": 100}, {"materia": "Matemáticas", "tarea": "Revisión de evidencias en cuaderno", "limite": "", "estado": "Faltante", "tardia": "No", "nota": 0, "max": 100}, {"materia": "Matemáticas", "tarea": "Unidad 1 · Ejercicios temas 2, 3 y 4", "limite": "", "estado": "Calificada", "tardia": "No", "nota": 100, "max": 100}, {"materia": "Matemáticas", "tarea": "Unidad 1 · Ejercicios Tema 1 (9-sep)", "limite": "", "estado": "Calificada", "tardia": "No", "nota": 0, "max": 100}, {"materia": "Español", "tarea": "Tema de blog", "limite": "", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Español", "tarea": "Bajo el ruido me encuentro", "limite": "2026-10-09", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Español", "tarea": "Proyecto lector actividad 2", "limite": "2026-10-07", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Español", "tarea": "Blog en Canva · instrucciones", "limite": "", "estado": "Pendiente", "tardia": "No", "nota": null, "max": null}, {"materia": "Español", "tarea": "Registro plataforma", "limite": "2026-10-05", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Español", "tarea": "Mi clima interior (Mindfulness)", "limite": "2026-09-18", "estado": "Faltante", "tardia": "No", "nota": null, "max": null}, {"materia": "Español", "tarea": "Revuelta Unidad 1", "limite": "2026-10-09", "estado": "Faltante", "tardia": "No", "nota": null, "max": null}, {"materia": "Español", "tarea": "Proyecto lector actividad 1", "limite": "2026-09-09", "estado": "Faltante", "tardia": "No", "nota": null, "max": null}, {"materia": "Español", "tarea": "Reglamento de clase", "limite": "2026-09-07", "estado": "Faltante", "tardia": "No", "nota": null, "max": null}, {"materia": "Español", "tarea": "Portada y temario", "limite": "2026-09-04", "estado": "Faltante", "tardia": "No", "nota": null, "max": null}, {"materia": "7th Grade", "tarea": "We are different", "limite": "2026-10-13", "estado": "Pendiente", "tardia": "No", "nota": null, "max": null}, {"materia": "7th Grade", "tarea": "What is in the box?", "limite": "2026-10-08", "estado": "Calificada", "tardia": "Sí", "nota": 100, "max": 100}, {"materia": "7th Grade", "tarea": "Kindness is killing me!", "limite": "", "estado": "Pendiente", "tardia": "No", "nota": null, "max": null}, {"materia": "7th Grade", "tarea": "How to be kind?", "limite": "2026-10-07", "estado": "Entregada", "tardia": "Sí", "nota": null, "max": null}, {"materia": "7th Grade", "tarea": "My favorite things", "limite": "2026-10-05", "estado": "Calificada", "tardia": "Sí", "nota": 100, "max": 100}, {"materia": "7th Grade", "tarea": "The beginning of an epic adventure! Episode 0", "limite": "", "estado": "Pendiente", "tardia": "No", "nota": null, "max": null}, {"materia": "7th Grade", "tarea": "What do they do?", "limite": "2026-10-01", "estado": "Calificada", "tardia": "No", "nota": 100, "max": 100}, {"materia": "7th Grade", "tarea": "What do I do?", "limite": "2026-10-01", "estado": "Calificada", "tardia": "No", "nota": 100, "max": 100}, {"materia": "7th Grade", "tarea": "Enemy Mine", "limite": "2026-09-29", "estado": "Calificada", "tardia": "No", "nota": 100, "max": 100}, {"materia": "7th Grade", "tarea": "The Time Travel Plumber", "limite": "2026-09-24", "estado": "Calificada", "tardia": "No", "nota": 100, "max": 100}, {"materia": "7th Grade", "tarea": "Someone like you", "limite": "2026-09-30", "estado": "Faltante", "tardia": "No", "nota": 100, "max": 100}, {"materia": "7th Grade", "tarea": "Who are we?", "limite": "2026-09-30", "estado": "Calificada", "tardia": "No", "nota": 100, "max": 100}, {"materia": "Socioemocional", "tarea": "Actividad: Construimos nuestro grupo ideal", "limite": "", "estado": "Pendiente", "tardia": "No", "nota": null, "max": null}, {"materia": "Socioemocional", "tarea": "Medición Socioemocional EDUCOMLAB", "limite": "2026-10-10", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Socioemocional", "tarea": "Aplicación DADA", "limite": "", "estado": "Pendiente", "tardia": "No", "nota": null, "max": null}, {"materia": "Socioemocional", "tarea": "Jornada de concientización (abuso sexual y maltrato infantil)", "limite": "2026-09-18", "estado": "Faltante", "tardia": "No", "nota": null, "max": null}, {"materia": "Ciencias", "tarea": "Sesión 3 · Science Bits · Nutrición de las células", "limite": "2026-10-09", "estado": "Calificada", "tardia": "No", "nota": 8, "max": 10}, {"materia": "Ciencias", "tarea": "Sesión 2 · Nutrición de células ruta (7-oct)", "limite": "2026-10-07", "estado": "Calificada", "tardia": "No", "nota": 10, "max": 10}, {"materia": "Ciencias", "tarea": "Sesión 4 · Actividad de indagación (2-oct)", "limite": "2026-10-02", "estado": "Calificada", "tardia": "Sí", "nota": 6, "max": 10}, {"materia": "Ciencias", "tarea": "Sesión 3 · Science Bits formados por células (30-sep)", "limite": "2026-09-30", "estado": "Calificada", "tardia": "No", "nota": 9, "max": 10}, {"materia": "Ciencias", "tarea": "Sesión 2 · Science Bits introducción a las células (29-sep)", "limite": "2026-09-29", "estado": "Calificada", "tardia": "Sí", "nota": 9, "max": 10}, {"materia": "Ciencias", "tarea": "Sesión 3 · Los super seres (23-sep)", "limite": "2026-09-28", "estado": "Calificada", "tardia": "No", "nota": 10, "max": 10}, {"materia": "Ciencias", "tarea": "Sesión 2 · Portada inicio de T1 (8-sep)", "limite": "2026-09-08", "estado": "Calificada", "tardia": "Sí", "nota": 5, "max": 10}, {"materia": "Técnicas de Estudio", "tarea": "Contrato estudiantil", "limite": "2026-10-13", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Técnicas de Estudio", "tarea": "Estrategias FODA", "limite": "2026-09-29", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Técnicas de Estudio", "tarea": "Análisis FODA personal", "limite": "2026-09-28", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Técnicas de Estudio", "tarea": "Ejercicio 1 · Visualización de tu vida futura", "limite": "2026-09-08", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Tecnología", "tarea": "Actividad 3 · Primer corte láser", "limite": "", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Tecnología", "tarea": "Actividad 2 · Esfera de navidad", "limite": "", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Tecnología", "tarea": "Introducción al diseño vectorial", "limite": "2026-09-28", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Tecnología", "tarea": "Collage ideas proyecto cortadora láser", "limite": "", "estado": "Entregada", "tardia": "No", "nota": null, "max": null}, {"materia": "Tecnología", "tarea": "Actividad 1 · ¿Qué es la tecnología?", "limite": "2026-09-14", "estado": "Faltante", "tardia": "No", "nota": null, "max": null}, {"materia": "Geography", "tarea": "World guessr", "limite": "2026-10-14", "estado": "Pendiente", "tardia": "No", "nota": 100, "max": 100}, {"materia": "Geography", "tarea": "Day of the dead", "limite": "2026-10-15", "estado": "Pendiente", "tardia": "No", "nota": null, "max": null}, {"materia": "Geography", "tarea": "Google maps", "limite": "2026-10-05", "estado": "Calificada", "tardia": "No", "nota": 100, "max": 100}, {"materia": "Geography", "tarea": "Geographical Space Characteristics", "limite": "2026-09-30", "estado": "Faltante", "tardia": "No", "nota": null, "max": null}, {"materia": "Geography", "tarea": "Mindfulness", "limite": "2026-09-17", "estado": "Faltante", "tardia": "No", "nota": 0, "max": 100}, {"materia": "Geography", "tarea": "What is Geography?", "limite": "2026-09-10", "estado": "Calificada", "tardia": "No", "nota": 100, "max": 100}, {"materia": "Geography", "tarea": "1st trimester cover", "limite": "2026-09-09", "estado": "Calificada", "tardia": "No", "nota": 100, "max": 100}, {"materia": "Geography", "tarea": "Class rules", "limite": "2026-09-09", "estado": "Calificada", "tardia": "Sí", "nota": 100, "max": 100}, {"materia": "Historia", "tarea": "El hombre prehistórico y mapa de rutas de migración", "limite": "2026-10-03", "estado": "Faltante", "tardia": "No", "nota": 0, "max": 100}, {"materia": "Historia", "tarea": "Evaluación de historia", "limite": "2026-09-24", "estado": "Calificada", "tardia": "No", "nota": 98, "max": 100}, {"materia": "Historia", "tarea": "Charles Darwin y la evolución de las especies", "limite": "2026-09-11", "estado": "Calificada", "tardia": "No", "nota": 100, "max": 100}, {"materia": "Historia", "tarea": "Materiales para la búsqueda arqueológica", "limite": "2026-09-21", "estado": "Faltante", "tardia": "No", "nota": 0, "max": 100}, {"materia": "Historia", "tarea": "Portada", "limite": "2026-09-04", "estado": "Calificada", "tardia": "No", "nota": 0, "max": 100}];
+const TODAY="2026-10-13";
+const pct=r=>r.nota!=null&&r.max?Math.round(r.nota/r.max*100):null;
+const fd=s=>{if(!s)return"Sin fecha";const[a,m,d]=s.split("-");return d+"/"+m};
+const dow=s=>s?["dom","lun","mar","mié","jue","vie","sáb"][new Date(s+"T12:00:00").getDay()]:"";
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const tag=e=>'<span class="t '+e+'">'+e+'</span>';
+const cnt=e=>D.filter(r=>r.estado===e).length;
+const cal=D.filter(r=>r.estado==="Calificada"&&pct(r)!=null);
+const avg=a=>a.length?Math.round(a.reduce((s,r)=>s+pct(r),0)/a.length):null;
+document.getElementById("k").innerHTML=[
+["Promedio",avg(cal)+"%",""],["Calificadas",cnt("Calificada"),""],["Entregadas sin nota",cnt("Entregada"),""],
+["Por entregar",cnt("Pendiente"),""],["Faltantes",cnt("Faltante"),"color:var(--bad)"],["Tardías",D.filter(r=>r.tardia==="Sí").length,""]
+].map(x=>'<div class="c"><b style="'+x[2]+'">'+x[1]+'</b><span>'+x[0]+'</span></div>').join("");
+const row=(r,cols)=>"<tr>"+cols.map(c=>"<td>"+c(r)+"</td>").join("")+"</tr>";
+const notaTxt=r=>r.nota!=null?r.nota+"/"+r.max:"–";
+const odd=r=>(r.estado==="Faltante"||r.estado==="Pendiente")&&r.nota===r.max&&r.nota!=null?" ⚠":"";
+// urgente
+const urg=D.filter(r=>r.estado==="Pendiente"&&r.limite&&r.limite<=TODAY.replace("13","16")).sort((a,b)=>a.limite.localeCompare(b.limite));
+document.getElementById("urg").innerHTML="<tr><th>Fecha</th><th>Materia</th><th>Tarea</th></tr>"+(urg.length?urg.map(r=>row(r,[r=>(r.limite<=TODAY?'<b style="color:var(--bad)">'+dow(r.limite)+" "+fd(r.limite)+"</b>":dow(r.limite)+" "+fd(r.limite)),r=>esc(r.materia),r=>esc(r.tarea)])).join(""):"<tr><td colspan=3>Nada urgente</td></tr>");
+// por materia
+const ms=[...new Set(D.map(r=>r.materia))];
+document.getElementById("mat").innerHTML="<tr><th>Materia</th><th>Promedio</th><th></th><th>Calif.</th><th>Entreg.</th><th>Por entr.</th><th>Falt.</th></tr>"+ms.map(m=>{const rs=D.filter(r=>r.materia===m),c=rs.filter(r=>r.estado==="Calificada"&&pct(r)!=null),a=avg(c);const n=e=>rs.filter(r=>r.estado===e).length;
+return"<tr><td>"+esc(m)+"</td><td>"+(a!=null?a+"%":"s/n")+'</td><td><div class="bar"><i style="width:'+(a||0)+'%"></i></div></td><td>'+n("Calificada")+"</td><td>"+n("Entregada")+"</td><td>"+n("Pendiente")+'</td><td style="color:var(--bad)">'+n("Faltante")+"</td></tr>"}).join("");
+// faltantes
+document.getElementById("fal").innerHTML="<tr><th>Materia</th><th>Tarea</th><th>Límite</th><th>Nota</th></tr>"+D.filter(r=>r.estado==="Faltante").sort((a,b)=>a.materia.localeCompare(b.materia)).map(r=>row(r,[r=>esc(r.materia),r=>esc(r.tarea)+odd(r),r=>fd(r.limite),r=>notaTxt(r)])).join("");
+// todas
+const all=document.getElementById("all");
+function draw(q){q=q.toLowerCase();const rs=D.filter(r=>(r.materia+" "+r.tarea).toLowerCase().includes(q));
+all.innerHTML="<tr><th>Materia</th><th>Tarea</th><th>Límite</th><th>Estado</th><th>Nota</th></tr>"+rs.map(r=>row(r,[r=>esc(r.materia),r=>esc(r.tarea)+(r.tardia==="Sí"?' <span class="t">tardía</span>':"")+odd(r),r=>fd(r.limite),r=>tag(r.estado),r=>notaTxt(r)])).join("")}
+draw("");document.getElementById("q").oninput=e=>draw(e.target.value);
+</script></body></html>
